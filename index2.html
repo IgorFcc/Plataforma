@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Integrada de Gestão Sustentável - PIGS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #2a3d66;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            width: 250px;
+            text-align: center;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #2a3d66;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #2a3d66;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>PIGS - Plataforma Integrada de Gestão Sustentável</h1>
+    <p>Gestão eficiente, sustentável e de baixo impacto</p>
+</header>
+
+<main>
+    <div class="dashboard">
+        <!-- Card de Desempenho do Sistema -->
+        <div class="card">
+            <h3>Desempenho do Sistema</h3>
+            <p>Uso de CPU: <span id="cpuUsage">8%</span></p>
+            <p>Uso de Memória: <span id="memoryUsage">35%</span></p>
+        </div>
+
+        <!-- Card de Consumo de Energia -->
+        <div class="card">
+            <h3>Consumo de Energia</h3>
+            <p>Consumo Atual: <span id="energyConsumption">58 kWh</span></p>
+            <p>Eficiência: <span id="energyEfficiency">94%</span></p>
+        </div>
+
+        <!-- Card de Emissões de CO2 -->
+        <div class="card">
+            <h3>Emissões de CO2</h3>
+            <p>Emissões: <span id="co2Emissions">7.2 kg</span></p>
+        </div>
+    </div>
+
+    <!-- Gráfico de Consumo de Energia -->
+    <div class="dashboard">
+        <div class="card" style="width: 500px;">
+            <h3>Gráfico de Consumo de Energia</h3>
+            <canvas id="energyChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Relatório de Sustentabilidade -->
+    <div class="card" style="width: 100%; text-align: center;">
+        <h3>Relatório de Sustentabilidade</h3>
+        <p id="energySavings">Economia de Energia: 20 kWh</p>
+        <p id="carbonReduction">Redução de CO2: 3.2 kg</p>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 PIGS - Plataforma Integrada de Gestão Sustentável</p>
+</footer>
+
+<!-- Incluindo o Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Função para atualizar dados simulados com resultados positivos
+    function updateData() {
+        // Simulando dados de desempenho e eficiência
+        let cpuUsage = 8; // Uso de CPU baixo, desempenho excelente
+        let memoryUsage = 35; // Uso de memória eficiente
+        let energyConsumption = 58; // Consumo de energia otimizado
+        let energyEfficiency = 94; // Alta eficiência energética
+        let co2Emissions = 7.2; // Emissões de CO2 muito baixas
+
+        // Atualizando os valores na interface
+        document.getElementById('cpuUsage').textContent = `${cpuUsage}%`;
+        document.getElementById('memoryUsage').textContent = `${memoryUsage}%`;
+        document.getElementById('energyConsumption').textContent = `${energyConsumption} kWh`;
+        document.getElementById('energyEfficiency').textContent = `${energyEfficiency}%`;
+        document.getElementById('co2Emissions').textContent = `${co2Emissions} kg`;
+
+        // Atualizando os relatórios de sustentabilidade
+        let energySavings = energyConsumption * 0.15; // Economia de energia devido à eficiência
+        let carbonReduction = co2Emissions * 0.4; // Redução de CO2 devido à eficiência energética
+        document.getElementById('energySavings').textContent = `Economia de Energia: ${energySavings.toFixed(2)} kWh`;
+        document.getElementById('carbonReduction').textContent = `Redução de CO2: ${carbonReduction.toFixed(2)} kg`;
+    }
+
+    // Gráfico de Consumo de Energia
+    const ctxEnergy = document.getElementById('energyChart').getContext('2d');
+    const energyChart = new Chart(ctxEnergy, {
+        type: 'line',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6'],
+            datasets: [{
+                label: 'Consumo de Energia (kWh)',
+                data: [58, 55, 52, 57, 50, 48], // Consumo de energia otimizado com redução ao longo do tempo
+                borderColor: 'rgba(75, 192, 192, 1)',
+                fill: false,
+                tension: 0.1
+            }]
+        }
+    });
+
+    // Atualiza os dados a cada 5 segundos com resultados positivos
+    setInterval(updateData, 5000);
+</script>
+
+</body>
+</html>
+
